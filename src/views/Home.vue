@@ -16,7 +16,7 @@ export default {
       skoreOAuthURI: process.env.VUE_APP_SKORE_URL,
       oauthClient: {
         redirect_uri: process.env.VUE_APP_OAUTH_REDIRECT_URI || window.location.href,
-        client_id: process.env.VUE_APP_OAUTH_CLIENT,
+        client_id: process.env.VUE_APP_OAUTH_CLIENT_ID,
         response_type: process.env.VUE_APP_OAUTH_RESPONSE_TYPE || 'code',
         scope: process.env.VUE_APP_OAUTH_SCOPE || '*',
       },
