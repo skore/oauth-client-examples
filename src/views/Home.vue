@@ -13,12 +13,12 @@ export default {
   name: 'Home',
   data() {
     return {
-      skoreOAuthURI: 'https://skoreappdev.com',
+      skoreOAuthURI: process.env.SKORE_OAUTH_URL,
       oauthClient: {
-        redirect_uri: null,
-        client_id: 3,
-        response_type: 'code',
-        scope: '*',
+        redirect_uri: process.env.SKORE_OAUTH_REDIRECT_URI || null,
+        client_id: process.env.SKORE_OAUTH_CLIENT,
+        response_type: process.env.SKORE_OAUTH_RESPONSE_TYPE || 'code',
+        scope: process.env.SKORE_OAUTH_SCOPE || '*',
       },
     }
   },
