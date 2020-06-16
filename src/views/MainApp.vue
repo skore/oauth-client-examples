@@ -1,16 +1,16 @@
 <template>
   <div class="main">
     <div v-if="authenticated">
+      <h3>Congrats! You are authenticated!</h3>
+      <br>
+      <textarea cols="30" rows="10" v-model="authTokens"></textarea>
+    </div>
+    <div v-else>
       <h3>Here is your auth code:</h3>
       <br>
       <input type="text" v-model="authCode" readonly>
       <br>
       <input type="button" @click="issueToken" value="Issue token">
-    </div>
-    <div v-else>
-      <h3>Congrats! You are authenticated!</h3>
-      <br>
-      <textarea cols="30" rows="10" v-model="authTokens"></textarea>
     </div>
   </div>
 </template>
