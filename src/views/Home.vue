@@ -13,7 +13,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      skoreOAuthURI: process.env.VUE_APP_OAUTH_URL,
+      skoreOAuthURI: process.env.VUE_APP_SKORE_URL,
       oauthClient: {
         redirect_uri: process.env.VUE_APP_OAUTH_REDIRECT_URI || window.location.href,
         client_id: process.env.VUE_APP_OAUTH_CLIENT,
