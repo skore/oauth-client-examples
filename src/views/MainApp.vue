@@ -8,7 +8,7 @@
     <div v-else>
       <h3>Here is your auth code:</h3>
       <br>
-      <input type="text" v-model="authCode" readonly>
+      <input type="text" :value="authCode" readonly>
       <br>
       <input type="button" @click="issueToken" value="Issue token">
     </div>
@@ -43,6 +43,10 @@ export default {
         client_secret: process.env.VUE_APP_OAUTH_CLIENT_SECRET,
         code: this.authCode,
         redirect_uri: window.location.href
+      }, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        }
       }).then(res => {
         this.authTokens = res.data
         window.localStorage.setItem('currentAuth', res.data)
