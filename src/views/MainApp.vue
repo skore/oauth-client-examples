@@ -8,7 +8,7 @@
     <div v-else>
       <h3>Here is your auth code:</h3>
       <br>
-      <input type="text" :value="authCode" readonly>
+      <input type="text" :value="code" readonly>
       <br>
       <input type="button" @click="issueToken" value="Issue token">
     </div>
@@ -18,16 +18,16 @@
 <script>
 export default {
   name: 'MainApp',
-  props: ['code', 'session'],
   data() {
     return {
       authenticated: false,
       authTokens: {}, 
-      authCode: this.code
+      code: null
     }
   },
   mounted() {
-    console.dir(this.code)
+    this.code = this.$route.query.code
+    console.dir(this.$route.query.code)
 
     if (window.localStorage.getItem('currentAuth')) {
       this.authenticated = true
@@ -41,7 +41,7 @@ export default {
         grant_type: 'authorization_code',
         client_id: process.env.VUE_APP_OAUTH_CLIENT_ID,
         client_secret: process.env.VUE_APP_OAUTH_CLIENT_SECRET,
-        code: this.authCode,
+        code: this.code,
         redirect_uri: window.location.href
       }, {
         headers: {
