@@ -13,12 +13,12 @@ export default {
   name: 'Home',
   data() {
     return {
-      skoreOAuthURI: process.env.SKORE_OAUTH_URL,
+      skoreOAuthURI: process.env.VUE_APP_OAUTH_URL,
       oauthClient: {
-        redirect_uri: process.env.SKORE_OAUTH_REDIRECT_URI || window.location.href,
-        client_id: process.env.SKORE_OAUTH_CLIENT,
-        response_type: process.env.SKORE_OAUTH_RESPONSE_TYPE || 'code',
-        scope: process.env.SKORE_OAUTH_SCOPE || '*',
+        redirect_uri: process.env.VUE_APP_OAUTH_REDIRECT_URI || window.location.href,
+        client_id: process.env.VUE_APP_OAUTH_CLIENT,
+        response_type: process.env.VUE_APP_OAUTH_RESPONSE_TYPE || 'code',
+        scope: process.env.VUE_APP_OAUTH_SCOPE || '*',
       },
     }
   },
