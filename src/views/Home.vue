@@ -15,7 +15,7 @@ export default {
     return {
       skoreOAuthURI: process.env.SKORE_OAUTH_URL,
       oauthClient: {
-        redirect_uri: process.env.SKORE_OAUTH_REDIRECT_URI || null,
+        redirect_uri: process.env.SKORE_OAUTH_REDIRECT_URI || window.location.href,
         client_id: process.env.SKORE_OAUTH_CLIENT,
         response_type: process.env.SKORE_OAUTH_RESPONSE_TYPE || 'code',
         scope: process.env.SKORE_OAUTH_SCOPE || '*',
@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted() {
-    this.oauthClient.redirect_uri = window.location.href + 'main'
+    this.oauthClient.redirect_uri += 'main'
     this.skoreOAuthURI = new URL(this.skoreOAuthURI + '/oauth/authorize')
 
     for (let key in this.oauthClient) {
