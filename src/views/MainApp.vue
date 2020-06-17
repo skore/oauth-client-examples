@@ -45,7 +45,7 @@ export default {
         redirect_uri: window.location.href.split('?')[0]
       }).then(res => {
         this.authTokens = res.data
-        window.localStorage.setItem('currentAuth', res.data)
+        window.localStorage.setItem('currentAuth', JSON.stringify(res.data))
       })
     }
   }
