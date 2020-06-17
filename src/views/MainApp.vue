@@ -14,14 +14,14 @@
     </div>
   </div>
 </template>
- 
+
 <script>
 export default {
   name: 'MainApp',
   data() {
     return {
       authenticated: false,
-      authTokens: {}, 
+      authTokens: {},
       code: null
     }
   },
@@ -43,10 +43,6 @@ export default {
         client_secret: process.env.VUE_APP_OAUTH_CLIENT_SECRET,
         code: this.code,
         redirect_uri: window.location.href
-      }, {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        }
       }).then(res => {
         this.authTokens = res.data
         window.localStorage.setItem('currentAuth', res.data)
