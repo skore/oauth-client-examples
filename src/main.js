@@ -4,13 +4,13 @@ import router from './router'
 import Axios from 'axios'
 
 let authHeaders = {}
-const auth = window.localStorage.getItem('currentAuth')
+const auth = JSON.parse(window.localStorage.getItem('currentAuth'))
 
 Vue.prototype.$auth = auth || {}
 
 if (auth) {
   authHeaders = {
-    Authorization: auth?.access_token
+    Authorization: auth?.token_type + ' ' + auth?.access_token
   }
 }
 
