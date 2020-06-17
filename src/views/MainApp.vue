@@ -42,7 +42,7 @@ export default {
         client_id: process.env.VUE_APP_OAUTH_CLIENT_ID,
         client_secret: process.env.VUE_APP_OAUTH_CLIENT_SECRET,
         code: this.code,
-        redirect_uri: window.location.href
+        redirect_uri: window.location.href.split('?')[0]
       }).then(res => {
         this.authTokens = res.data
         window.localStorage.setItem('currentAuth', res.data)
