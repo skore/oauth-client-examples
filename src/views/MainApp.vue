@@ -13,7 +13,7 @@
         ></vue-json-pretty>
       </div>
       <hr />
-      <input type="text" v-model="workspaceSlug" placeholder="Enter the workspace slug" />
+      <input type="text" v-model="workspaceId" placeholder="Enter the workspace ID" />
       <input type="button" @click="listProcesses" value="List processes" />
       <hr />
       <input type="text" v-model="processSlug" placeholder="Enter the process slug" />
@@ -44,7 +44,7 @@ export default {
 
   data() {
     return {
-      workspaceSlug: "",
+      workspaceId: "",
       processSlug: "",
       recentRequestContent: {},
       authenticated: false,
@@ -95,24 +95,26 @@ export default {
     },
 
     listProcesses() {
-      if (!this.workspaceSlug) {
+      if (!this.workspaceId) {
         return;
       }
 
-      this.$http
-        .get(`api/workspaces/${this.workspaceSlug}/processes`)
-        .then(res => {
-          this.recentRequestContent = res.data;
-        });
+      this.$http.get("api/processes", {
+        params: {
+          "filter[workspace_id]": this.workspaceId
+        }
+      }).then(res => {
+        this.recentRequestContent = res.data;
+      });
     },
 
     listProcessMetas() {
-      if (!this.workspaceSlug && !this.processSlug) {
+      if (!this.workspaceId && !this.processSlug) {
         return;
       }
       this.$http
         .get(
-          `api/workspaces/${this.workspaceSlug}/processes/${this.processSlug}?include=meta`
+          `api/workspaces/${this.workspaceId}/processes/${this.processSlug}?include=meta`
         )
         .then(res => {
           this.recentRequestContent = res.data;
