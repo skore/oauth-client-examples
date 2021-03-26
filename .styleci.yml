@@ -17,4 +17,3 @@ vue:
     name: "*.vue"
 
 php: false
-vue: true
